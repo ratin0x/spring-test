@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+
+group = 'org.test'
+version = '0.0.1-SNAPSHOT'
+
+description = """marketplace"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+
+
+repositories {       
+     maven { url "http://repo.maven.apache.org/maven2" }
+     maven { url 'http://dl.bintray.com/sbuettner/maven' }
+}
+dependencies {
+	compile(group: 'de.infinit', name: 'spring-boot-autoconfigure-wro4j', version: '0.0.6')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.3.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.3.2.RELEASE'
+    compile group: 'org.webjars', name: 'angularjs', version:'1.3.8'
+    compile group: 'org.webjars', name: 'jasmine', version:'2.0.0'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.3.2.RELEASE') {
+		exclude(module: 'commons-logging')
+    }
+    testCompile group: 'org.webjars', name: 'angularjs', version:'1.3.8'
+    testCompile group: 'org.webjars', name: 'jasmine', version:'2.0.0'
+}
+
+springBoot {
+	mainClass = "com.pgi.MarketplaceApplication"	
+}
